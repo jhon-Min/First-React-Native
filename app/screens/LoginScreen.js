@@ -1,14 +1,9 @@
 import React from "react";
 import { Image, StyleSheet } from "react-native";
-import { Formik, yupToFormErrors } from "formik";
 import * as Yup from "yup";
 
 import Screen from "../components/Screen";
-import AppTextInput from "../components/AppTextInput";
-import AppButton from "../components/AppButton";
-import AppText from "../components/AppText";
-import AppErrorMessage from "../components/AppErrorMessage";
-import AppFormField from "../components/AppFormField";
+import { AppForm, AppFormField, AppSubmit } from "../components/forms";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
@@ -20,42 +15,34 @@ function LoginScreen(props) {
     <Screen style={styles.container}>
       <Image source={require("../assets/logo-red.png")} style={styles.logo} />
 
-      <Formik
+      <AppForm
         initialValues={{ email: "", password: "" }}
         onSubmit={(values) => console.log(values)}
         validationSchema={validationSchema}
       >
-        {({ handleSubmit }) => (
-          <>
-            <AppFormField
-              name="email"
-              autoCapitalize="none"
-              autoCorrect={false}
-              icon="email"
-              keyboardType="email-address"
-              placeholder="Email"
-              style={{ marginBottom: 55 }}
-            />
+        <AppFormField
+          name="email"
+          autoCapitalize="none"
+          autoCorrect={false}
+          icon="email"
+          keyboardType="email-address"
+          placeholder="Email"
+          style={{ marginBottom: 55 }}
+        />
 
-            <AppFormField
-              name="password"
-              autoCapitalize="none"
-              autoCorrect={false}
-              icon="lock"
-              secureTextEntry
-              placeholder="Password"
-              textContentType="password"
-              style={{ marginBottom: 55 }}
-            />
+        <AppFormField
+          name="password"
+          autoCapitalize="none"
+          autoCorrect={false}
+          icon="lock"
+          secureTextEntry
+          placeholder="Password"
+          textContentType="password"
+          style={{ marginBottom: 55 }}
+        />
 
-            <AppButton
-              title="Login"
-              style={{ marginTop: 40 }}
-              onPress={handleSubmit}
-            />
-          </>
-        )}
-      </Formik>
+        <AppSubmit title="login" style={{ marginTop: 55 }} />
+      </AppForm>
     </Screen>
   );
 }
