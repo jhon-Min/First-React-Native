@@ -4,6 +4,7 @@ import {
   GestureHandlerRootView,
   Swipeable,
 } from "react-native-gesture-handler";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import color from "../config/color";
 import AppText from "./AppText";
@@ -24,9 +25,11 @@ function ListItem({
             {ImageComponent}
             {image && <Image style={styles.listImg} source={image} />}
             <View style={styles.textBox}>
-              <AppText>{title}</AppText>
+              <AppText numberOfLines={1}>{title}</AppText>
               {subTitle && (
-                <AppText style={styles.subTitle}>{subTitle}</AppText>
+                <AppText style={styles.subTitle} numberOfLines={1}>
+                  {subTitle}
+                </AppText>
               )}
             </View>
           </View>
@@ -57,6 +60,7 @@ const styles = StyleSheet.create({
 
   textBox: {
     marginLeft: 15,
+    justifyContent: "center",
   },
 });
 

@@ -1,10 +1,12 @@
 import React from "react";
 import { Text, View, StyleSheet } from "react-native";
 
-function AppText({ children, style }) {
+function AppText({ children, style, ...otherProps }) {
   return (
     <View>
-      <Text style={[styles.text, style]}>{children}</Text>
+      <Text style={[styles.text, style]} {...otherProps}>
+        {children}
+      </Text>
     </View>
   );
 }

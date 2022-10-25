@@ -37,9 +37,11 @@ function AppPicker({
                 style={{ marginRight: 5 }}
               />
             )}
-            <AppText style={styles.text}>
-              {selectedItem ? selectedItem.label : placeholder}
-            </AppText>
+            {selectedItem ? (
+              <AppText style={styles.text}>{selectedItem.label}</AppText>
+            ) : (
+              <AppText style={styles.placeholder}>{placeholder}</AppText>
+            )}
           </View>
 
           <MaterialCommunityIcons
@@ -88,6 +90,10 @@ const styles = StyleSheet.create({
 
   formControl: {
     flexDirection: "row",
+  },
+
+  placeholder: {
+    color: color.medium,
   },
 });
 
