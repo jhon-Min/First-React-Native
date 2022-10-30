@@ -6,12 +6,14 @@ import Screen from "../components/Screen";
 import AppForm from "../components/forms/AppForm";
 import { AppFormField, AppSubmit } from "../components/forms";
 import AppFormPicker from "../components/forms/AppFormPicker";
+import FormImagePicker from "../components/forms/FormImagePicker";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required().min(1).label("Title"),
   price: Yup.number().required().min(1).max(10000).label("Price"),
   description: Yup.string().label("Description"),
   category: Yup.object().required().nullable().label("Category"),
+  images: Yup.array().min(1, "Please select at least one image."),
 });
 
 const categories = [
@@ -29,10 +31,13 @@ function ListEditScreen(props) {
           price: "",
           description: "",
           category: null,
+          images: [],
         }}
         onSubmit={(values) => console.log(values)}
         validationSchema={validationSchema}
       >
+        <FormImagePicker name="images" />
+
         <AppFormField
           name="title"
           placeholder="Title"
